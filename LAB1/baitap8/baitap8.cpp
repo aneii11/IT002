@@ -87,20 +87,30 @@ void NhapSTK(){
   * Dau ra: Mot so tiet kiem moi duoc luu vao DSSTK (Danh sach so tiet kiem)*/
   SoTietKiem Moi;
   while(1){
-    printf("[?] Nhap Ma So? ");
     getchar();
+    printf("[?] Nhap Ma So? ");
     fgets(Moi.MaSo, 6, stdin);
     Moi.MaSo[strcspn(Moi.MaSo,"\n")] = 0;
     if(!KiemTraMa(Moi.MaSo)){
-      printf("[-] Ma So khong dung dinh dang:\n");
+      printf("[-] Ma So khong dung dinh dang.\n");
       continue;
     }
     break;
   }
 
+  getchar();
+  while(1){
+    printf("[?] Nhap ten khach hang? ");
+    fgets(Moi.HoTenKH, 31, stdin);
+    Moi.HoTenKH[strcspn(Moi.HoTenKH,"\n")] = 0;
+    if(!KiemTraTen(Moi.HoTenKH)){
+      printf("[-] Ho ten khong dung dinh dang.\n");
+      continue;
+    }
+    break;
+  }
 
   printf("[?] Nhap loai tiet kiem: ");
-  getchar();
   fgets(Moi.LoaiTietKiem, 11, stdin);
   Moi.LoaiTietKiem[strcspn(Moi.LoaiTietKiem,"\n")] = 0;
     
@@ -120,8 +130,8 @@ void NhapSTK(){
   }
 
   while(1){
-    printf("[?] Nhap CMND: ");
     getchar();
+    printf("[?] Nhap CMND: ");
     fgets(Moi.CMND,13,stdin);
     Moi.CMND[strcspn(Moi.CMND,"\n")] = 0;
     if(!KiemTraCMND(Moi.CMND)){
@@ -141,7 +151,6 @@ void NhapSTK(){
     break;
   }
   DSSTK.push_back(Moi);
-
 }
 
 void XuatSTK(SoTietKiem stk){
@@ -149,8 +158,10 @@ void XuatSTK(SoTietKiem stk){
     * Dau vao: 
     * Tham so 1: So tiet kiem 
     * Dau ra: Khong co */
+  puts("");
   puts("[+] Thong tin so tiet kiem:");
   printf("[+] Ma so: %s\n",stk.MaSo);
+  printf("[+] Khach hang: %s\n",stk.HoTenKH);
   printf("[+] Loai tiet kiem: %s\n", stk.LoaiTietKiem);
   printf("[+] So CMND: %s\n", stk.CMND);
   printf("[+] Ngay mo so: %02d/%02d/%d\n", stk.NgayMoSo.Ngay, stk.NgayMoSo.Thang, stk.NgayMoSo.Nam);
@@ -196,9 +207,9 @@ void CapNhatLaiSuat(SoTietKiem& SoHienTai){
     puts("[-] Lai suat khong hop le");
     return;
   }
-  double TienLaiNgan = SoHienTai.TienGui * (LaiSuat )/12 *1;
+  double TienLaiNgan = SoHienTai.TienGui * (LaiSuat)/12/100 *1;
   printf("[+] Lai suat theo tiet kiem ngan han den het ky han: %.2lf/thang\n",TienLaiNgan );
-  double TienLaiDai = SoHienTai.TienGui * (LaiSuat)/12 * 6;
+  double TienLaiDai = SoHienTai.TienGui * (LaiSuat)/12/100 * 6;
   printf("[+] Lai suat theo tiet kiem dai han den het ky han: %.2lf/6thang\n", TienLaiDai);
 }
 
@@ -212,8 +223,8 @@ void TinhToanLai(SoTietKiem SoHienTai){
   }
   int SoThang = (2024 - SoHienTai.NgayMoSo.Nam)*12 + 10 - SoHienTai.NgayMoSo.Thang;
   printf("So thang: %d\n", SoThang);
-  double SoTienLai = SoHienTai.TienGui * (SoHienTai.LaiSuat)/12 * SoThang;
-  printf("[+] Tien lai thu thoi diem mo so: %.2lf\n",SoTienLai);
+  double SoTienLai = SoHienTai.TienGui * (SoHienTai.LaiSuat)/12/100 * SoThang;
+  printf("[+] Tien lai tu thoi diem mo so: %.2lf\n",SoTienLai);
 }
 
 void RutTien(SoTietKiem SoHienTai){
@@ -231,7 +242,7 @@ void RutTien(SoTietKiem SoHienTai){
   if(!strcmp(SoHienTai.LoaiTietKiem, "Dai han")){
     if(SoThang < 6){
       puts("[!] Chua den ky han rut tien");
-      double SoTienLai = SoHienTai.TienGui * (0.5)/12 * SoThang;
+      double SoTienLai = SoHienTai.TienGui * (0.5)/12/100 * SoThang;
       printf("[!] Lai suat nhan duoc neu rut: %.2f\n", SoTienLai);
     }
   }
@@ -370,7 +381,7 @@ int main(){
           puts("[!] Lua chon khong hop le");
           continue;
         }
-        printf("[?] Nhap tu khoa");
+        printf("[?] Nhap tu khoa: ");
         cin >> TuKhoa;
         if(!TimKiem(TuKhoa, (LuaChonTimKiem == 2 ? 1:0), KetQua )){
           puts("[!] Khong tim thay so tiet kiem");

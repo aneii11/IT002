@@ -10,23 +10,15 @@ struct PhanSo {
 vector<PhanSo> ps;
 
 void Xuat(PhanSo ps){
-  /* Xuat ra thiet bi xuat chuan phan so truyen vao tu dau vao 
+  /* Xuat ra thiet bi xuat chuan phan so truyen vao tu dau vao                              //
     * Dau vao: 
     * Tham so 1: Phan so 
     * Dau ra: Khong co */ 
-  if(ps.Tu == 0){
-    printf("0");
-    return;
-  }
-  if(ps.Mau == 1){
-    printf("%d", (int)ps.Tu);
-    return;
-  }
   if((float)ps.Tu/ps.Mau < 0){
     printf("-%d/%d", abs(ps.Tu), abs(ps.Mau));
     return;
   }
-  if((float)ps.Tu/ps.Mau > 0){
+  if((float)ps.Tu/ps.Mau >= 0){
     printf("%d/%d", abs(ps.Tu), abs(ps.Mau));
     return;
   }
@@ -45,7 +37,7 @@ void SapXep(){
   sort(ps.begin(), ps.end(), SoSanh);
 }
 
-int main(){
+int main(){                                                             //
   int n, k;
   cout << "So phan so trong mang: ";
   cin >> n;
@@ -59,6 +51,8 @@ int main(){
   }
   cout << "Phan so be/lon thu: ";
   cin >> k;
+  if (k > ps.size())
+    return 0;
   SapXep();
   cout << "Phan so be thu " << k << ": ";
   Xuat(ps[k-1]);

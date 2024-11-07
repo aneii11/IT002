@@ -1,10 +1,10 @@
 #include "ngaythangnam.cpp"
 
 int main (int argc, char *argv[]) {
-  NgayThangNam A(31,12,2012);
+  NgayThangNam A;
   NgayThangNam B;
   int so_ngay;
-  cin >> B;
+  cin >> A >> B;
   cin >> so_ngay;
   cout << "A + " << so_ngay << " = " << A + so_ngay << "\n";
   cout << "A - " << so_ngay << " = " << A - so_ngay << "\n";

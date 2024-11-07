@@ -6,6 +6,7 @@ class NgayThangNam{
   int Ngay;
   int Thang;
   int Nam;
+  bool HopLe();
 public:
   NgayThangNam();
   NgayThangNam(int ngay_, int thang_, int nam_);

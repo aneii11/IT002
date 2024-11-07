@@ -70,16 +70,21 @@ bool operator !=(SoPhuc a, SoPhuc b){
   return !(b == a);
 }
 
-/*  Phuong thuc operator << cho lop phan so. Xuat ra so thuc a 
+/*  Phuong thuc operator >> cho lop phan so. Nhap vao SoPhuc a 
  *  Dau vao: 
  *    istream& is: doi tuong thuoc lop istream
- *    SoPhuc sp: So phuc xuat ra 
+ *    SoPhuc sp: So phuc nhap vao 
  *  Dau ra: Tra ve doi tuong is */
 istream& operator >>(istream &is, SoPhuc &sp){
   is >> sp.dThuc >> sp.dAo;
   return is;
 }
 
+/*  Phuong thuc operator << cho lop phan so. Xuat ra SoPhuc a 
+ *  Dau vao: 
+ *    ostream& os: doi tuong thuoc lop ostream
+ *    SoPhuc sp: So phuc xuat ra 
+ *  Dau ra: Tra ve doi tuong os */
 ostream& operator <<(ostream &os, SoPhuc sp){
   os << sp.dThuc << " ";
   if(sp.dAo == 0)
@@ -91,6 +96,11 @@ ostream& operator <<(ostream &os, SoPhuc sp){
   return os;
 }
 
+/*  Phuong thuc operator << cho lop phan so. Xuat ra SoPhuc a neu a khac rong, xuat ra "Khong xac dinh" neu a rong
+ *  Dau vao: 
+ *    ostream& os: doi tuong thuoc lop ostream
+ *    optional<SoPhuc> sp: Doi tuong optional<SoPhuc>
+ *  Dau ra: Tra ve doi tuong os */
 ostream& operator <<(ostream &os, optional<SoPhuc> sp){
   if(sp==nullopt){
     os << "Khong xac dinh";

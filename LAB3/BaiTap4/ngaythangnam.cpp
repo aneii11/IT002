@@ -9,6 +9,12 @@ NgayThangNam::NgayThangNam(int ngay_, int thang_, int nam_): Ngay(ngay_), Thang(
 
 NgayThangNam::NgayThangNam(const NgayThangNam &a): Ngay(a.Ngay), Thang(a.Thang), Nam(a.Nam) {}
 
+bool NgayThangNam::HopLe(){
+  if(Ngay > ngay[Nam%4 != 0][Thang] || Thang > 12 || Thang < 0)
+    return false;
+  return true;
+}
+
 int NgayThangNam::TinhNgay(){
   return accumulate(ngay[Nam%4], ngay[Nam%4] + Thang + 1, 0);
 }
@@ -25,6 +31,10 @@ NgayThangNam NgayThangNam::operator -(NgayThangNam a){
       KQ.Thang = 12 + (KQ.Thang % 12);
     }
     KQ.Ngay += ngay[KQ.Nam%4!=0][KQ.Thang];
+  }
+  if(KQ.Thang < 1){
+    KQ.Nam = KQ.Nam + (-12 + KQ.Thang)/12;
+    KQ.Thang = 12 + (KQ.Thang % 12);
   }
   return KQ;
 }
@@ -121,7 +131,10 @@ bool NgayThangNam::operator <(NgayThangNam a){
 
 istream& operator >>(istream &is, NgayThangNam &a){
   is >> a.Ngay >> a.Thang >> a.Nam;
-  return is;
+  if(a.HopLe())
+    return is;
+  cerr << "Khong hop le\n";
+  exit(-1);
 }
 
 ostream& operator <<(ostream &os, NgayThangNam a){

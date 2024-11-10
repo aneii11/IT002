@@ -132,7 +132,7 @@ NgayThangNam NgayThangNam::operator --(){
  *  Dau ra: Giam doi tuong len 1 don vi ngay va tra ve doi tuong ban dau*/
 NgayThangNam NgayThangNam::operator --(int){
   NgayThangNam t = *this;
-  *this = *this + 1;
+  *this = *this - 1;
   return t;
 }
 

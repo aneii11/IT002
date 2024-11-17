@@ -30,7 +30,10 @@ float NongTrai::ThongKeSua(){
 }
 
 void NongTrai::ThemGiaSuc(GiaSuc *them){
-  gia_suc[TongSo] = them;
+  if(TongSo < 1000)
+    gia_suc[TongSo] = them;
+  else
+    cout << "Nong trai da het suc chua\n";
 }
 
 void NongTrai::Doi(){

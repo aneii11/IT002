@@ -4,11 +4,11 @@
 
 int main (int argc, char *argv[]) {
   Phong *danh_sach[5] = {};
-  danh_sach[0] = new Deluxe (5, 3000000, 2000000);
-  danh_sach[1] = new Deluxe (21, 3100000, 2500000);
-  danh_sach[2] = new Business (18);
-  danh_sach[3] = new Business (13);
-  danh_sach[4] = new Premium (17, 4320000);
+  danh_sach[0] = new Deluxe (18, 2300000, 2000000);
+  danh_sach[1] = new Premium (10, 3000000);
+  danh_sach[2] = new Business (27);
+  danh_sach[3] = new Business (23);
+  danh_sach[4] = new Premium (12, 1500000);
   long long dt_deluxe = 0;
   long long dt_premium = 0;
   long long dt_business = 0;

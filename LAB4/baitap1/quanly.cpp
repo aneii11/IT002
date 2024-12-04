@@ -1,5 +1,6 @@
 #include "quanly.h"
 
+// Nhap thong tin quan ly
 void QuanLy::Nhap(){
   cout << "Nhap ma nhan vien: ";
   cin >> MaNV;
@@ -12,6 +13,7 @@ void QuanLy::Nhap(){
   cin >> TyLeThuong;
 }
 
+// Xuat thong tin quan ly gom MaNV, Ten, LuongCB va Tien thuong tinh duoc
 void QuanLy::Xuat(){
   cout << "Ma nhan vien: " << MaNV << "\n";
   cout << "Ten nhan vien: " << Ten << "\n";
@@ -19,6 +21,7 @@ void QuanLy::Xuat(){
   cout << "Tien thuong: " << setprecision(2) << TienThuong() << "\n";
 }
 
+// Tinh tien thuong cua quan ly
 long long QuanLy::TienThuong(){
   return LuongCB * TyLeThuong;
 }

@@ -4,7 +4,7 @@ class Premium: public Phong{
 private:
   long long PhiPhucVu;
 public:
-  Premium(int dem, int pv);
+  Premium(int dem, long long pv);
   long long DoanhThu(); 
 };
 
